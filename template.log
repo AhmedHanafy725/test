@@ -1,0 +1,201 @@
+ZRT-ZOS-001 ... [Thu15 07:04] - base_test.py      :90  :j.testsuite.log      - INFO     - Create a container without providing flist parameter, should fail.
+[Thu15 07:04] - container.py      :50  :j.controller.log     - INFO     - Install container_e242a991d9bbd1ced992b6 container
+[Thu15 07:04] - ZeroRobotManager.py:170 :j.zerorobot          - ERROR    - fail to create service: fail to create service container_e242a991d9bbd1ced992b6 github.com/threefoldtech/0-templates/container/0.0.1: parameter 'flist' not valid: 
+passed
+ZRT-ZOS-002 ... [Thu15 07:04] - base_test.py      :90  :j.testsuite.log      - INFO     - Create a container with env parameters.
+[Thu15 07:04] - container.py      :50  :j.controller.log     - INFO     - Install container_f04a25a744d48a89226f5e container
+[Thu15 07:04] - base_test.py      :90  :j.testsuite.log      - INFO     - Check if the parameter have been reflected correctly
+[Thu15 07:04] - container.py      :55  :j.controller.log     - INFO     - Uninstall container_f04a25a744d48a89226f5e conatiner
+passed
+ZRT-ZOS-003 ... [Thu15 07:04] - container_testcases.py:64  :j.testsuite.log      - INFO     - Create a container (C1)
+[Thu15 07:04] - container.py      :50  :j.controller.log     - INFO     - Install container_4647d3865bde9590c57692 container
+[Thu15 07:04] - container_testcases.py:70  :j.testsuite.log      - INFO     - Stop container C1, should succeed.
+[Thu15 07:04] - container_testcases.py:73  :j.testsuite.log      - INFO     - Check if the container has been terminated, should succeed
+[Thu15 07:04] - container_testcases.py:77  :j.testsuite.log      - INFO     - Start container C1, should succeed.
+[Thu15 07:04] - base_test.py      :90  :j.testsuite.log      - INFO     - Check if the container has been started, should succeed
+[Thu15 07:04] - container.py      :55  :j.controller.log     - INFO     - Uninstall container_4647d3865bde9590c57692 conatiner
+passed
+ZRT-ZOS-016 [with *args=('before',)] ... skipped
+ZRT-ZOS-016 [with *args=('after',)] ... skipped
+ZRT-ZOS-017 ... [Thu15 07:04] - base_test.py      :90  :j.testsuite.log      - INFO     - Create a directory (D1) on host and file (F1) inside it.
+[Thu15 07:04] - container_testcases.py:138 :j.testsuite.log      - INFO     - Create a container (C1) with mount directory (D1), should succeed.
+[Thu15 07:04] - container.py      :50  :j.controller.log     - INFO     - Install container_7b4e97938b91421bcf75ca container
+[Thu15 07:05] - base_test.py      :90  :j.testsuite.log      - INFO     - Get container id and container client.
+[Thu15 07:05] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that file (F1) is in target mount directory, should be found.
+[Thu15 07:05] - base_test.py      :90  :j.testsuite.log      - INFO     - Remove directory created
+[Thu15 07:05] - container.py      :55  :j.controller.log     - INFO     - Uninstall container_7b4e97938b91421bcf75ca conatiner
+passed
+ZRT-ZOS-018 [with host_network='True'] ... [Thu15 07:05] - base_test.py      :90  :j.testsuite.log      - INFO     - Create a container (C1) with port forward (P1) and host network is True
+[Thu15 07:05] - container.py      :50  :j.controller.log     - INFO     - Install container_dd4ff3b8741decde835bed container
+[Thu15 07:05] - base_test.py      :90  :j.testsuite.log      - INFO     - Get container id and client.
+[Thu15 07:05] - base_test.py      :90  :j.testsuite.log      - INFO     - Create server on port (P1).
+[Thu15 07:06] - base_test.py      :90  :j.testsuite.log      - INFO     - Create a file (F1) on container (C1).
+[Thu15 07:06] - base_test.py      :90  :j.testsuite.log      - INFO     - In case of host network is True, container will ignore the port forward.
+[Thu15 07:08] - container.py      :55  :j.controller.log     - INFO     - Uninstall container_dd4ff3b8741decde835bed conatiner
+passed
+ZRT-ZOS-018 [with host_network='False'] ... [Thu15 07:08] - base_test.py      :90  :j.testsuite.log      - INFO     - Create a container (C1) with port forward (P1) and host network is False
+[Thu15 07:08] - container.py      :50  :j.controller.log     - INFO     - Install container_b545e9bdbe0f45b5255650 container
+[Thu15 07:08] - base_test.py      :90  :j.testsuite.log      - INFO     - Get container id and client.
+[Thu15 07:08] - base_test.py      :90  :j.testsuite.log      - INFO     - Create server on port (P1).
+[Thu15 07:08] - base_test.py      :90  :j.testsuite.log      - INFO     - Create a file (F1) on container (C1).
+[Thu15 07:08] - base_test.py      :90  :j.testsuite.log      - INFO     - Try to get file (F1) through server using port forward, should be found. 
+[Thu15 07:08] - container.py      :55  :j.controller.log     - INFO     - Uninstall container_b545e9bdbe0f45b5255650 conatiner
+passed
+ZRT-ZOS-019 ... [Thu15 07:08] - base_test.py      :90  :j.testsuite.log      - INFO     - Create a container (C1) with init process.
+[Thu15 07:08] - container.py      :50  :j.controller.log     - INFO     - Install container_774b2597d8b4e424edcd3d container
+[Thu15 07:09] - base_test.py      :90  :j.testsuite.log      - INFO     - Get container id and client.
+[Thu15 07:09] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that process is created, should be found.
+[Thu15 07:09] - container.py      :55  :j.controller.log     - INFO     - Uninstall container_774b2597d8b4e424edcd3d conatiner
+passed
+ZRT-ZOS-020 ... [Thu15 07:09] - base_test.py      :90  :j.testsuite.log      - INFO     - Create a container (C1) with port forward (P1).
+[Thu15 07:09] - container.py      :50  :j.controller.log     - INFO     - Install container_694bc4a46830bff5a24163 container
+[Thu15 07:09] - base_test.py      :90  :j.testsuite.log      - INFO     - Create another container (C2) with same port forward (P1), should fail.
+[Thu15 07:09] - container.py      :50  :j.controller.log     - INFO     - Install container_27431180d9e89893710585 container
+[Thu15 07:09] - base_test.py      :90  :j.testsuite.log      - INFO     - Stop container (C1).
+[Thu15 07:09] - base_test.py      :90  :j.testsuite.log      - INFO     - Create another container (C3) with same port forward (P1), should success.
+[Thu15 07:09] - container.py      :50  :j.controller.log     - INFO     - Install container_bc4e2398467e3ce91c6321 container
+[Thu15 07:09] - container.py      :55  :j.controller.log     - INFO     - Uninstall container_bc4e2398467e3ce91c6321 conatiner
+passed
+ZRT-ZOS-003 ... [Thu15 07:11] - base_test.py      :90  :j.testsuite.log      - INFO     - Create vm[vm1], should succeed.
+[Thu15 07:11] - vm.py             :44  :j.controller.log     - INFO     - Install vm_8c4c25aa35b3ac53e87b87 vm, ssh port : 22251 
+[Thu15 07:11] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that the vm have been created.
+[Thu15 07:11] - base_test.py      :90  :j.testsuite.log      - INFO     - Destroy [vm1], should succeed.
+[Thu15 07:11] - vm.py             :49  :j.controller.log     - INFO     - Uninstall vm_8c4c25aa35b3ac53e87b87 vm
+[Thu15 07:12] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that [vm1] has been destroyed successfully.
+passed
+ZRT-ZOS-004 ... [Thu15 07:12] - base_test.py      :90  :j.testsuite.log      - INFO     - Create a vm without providing flist parameter, should fail.
+[Thu15 07:12] - vm.py             :44  :j.controller.log     - INFO     - Install vm_1a4311844a0e25677d08a7 vm, ssh port : 22402 
+[Thu15 07:12] - ZeroRobotManager.py:170 :j.zerorobot          - ERROR    - fail to create service: fail to create service vm_1a4311844a0e25677d08a7 github.com/threefoldtech/0-templates/vm/0.0.1: invalid input. Vm requires flist or ipxeUrl to be specifed.
+passed
+ZRT-ZOS-013 ... [Thu15 07:12] - base_test.py      :90  :j.testsuite.log      - INFO     - Get zerotier client.
+[Thu15 07:12] - base_test.py      :90  :j.testsuite.log      - INFO     - Create vm[vm1] with zerotier network, should succeed.
+[Thu15 07:12] - vm.py             :44  :j.controller.log     - INFO     - Install vm_b840bd879bf3ccc4700ead vm, ssh port : 22702 
+[Thu15 07:12] - base_test.py      :90  :j.testsuite.log      - INFO     - Get zerotier ip from vm info.
+[Thu15 07:15] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that vm can be accessed by zertier network, should succeed.
+[Thu15 07:15] - base_test.py      :90  :j.testsuite.log      - INFO     - Remove zerotier service
+[Thu15 07:15] - vm.py             :49  :j.controller.log     - INFO     - Uninstall vm_b840bd879bf3ccc4700ead vm
+passed
+ZRT-ZOS-014 ... [Thu15 07:15] - base_test.py      :90  :j.testsuite.log      - INFO     - Create vm[vm1], should succeed.
+[Thu15 07:15] - vm.py             :44  :j.controller.log     - INFO     - Install vm_ba49a1bc8928197dc381da vm, ssh port : 22355 
+[Thu15 07:15] - base_test.py      :90  :j.testsuite.log      - INFO     - Add port forward [p1] to [VM1], should succeed.
+[Thu15 07:15] - base_test.py      :90  :j.testsuite.log      - INFO     - Start server on [P1], should succeed.
+[Thu15 07:15] - base_test.py      :90  :j.testsuite.log      - INFO     - Get the content of authorized_key file from the vm using the server created 
+[Thu15 07:15] - base_test.py      :90  :j.testsuite.log      - INFO     - Make sure that ssh key is in the authorized_key
+[Thu15 07:15] - base_test.py      :90  :j.testsuite.log      - INFO     - remove port forward [p1]
+[Thu15 07:15] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that you can't access the server anymore
+[Thu15 07:18] - vm.py             :49  :j.controller.log     - INFO     - Uninstall vm_ba49a1bc8928197dc381da vm
+passed
+ZRT-ZOS-015 [with filesystem='ext4'] ... [Thu15 07:18] - base_test.py      :90  :j.testsuite.log      - INFO     - Create zerodb [zdb], should succeed.
+[Thu15 07:18] - base_test.py      :90  :j.testsuite.log      - INFO     - Create vdisk [D] using namespace on [zdb], should succeed.
+[Thu15 07:18] - base_test.py      :90  :j.testsuite.log      - INFO     - Create vm [VM] with disk [D], should succeed.
+[Thu15 07:18] - vm.py             :44  :j.controller.log     - INFO     - Install vm_8f4cae81af50314f0d67bd vm, ssh port : 22218 
+[Thu15 07:19] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that disk [D1] added successfully to vm.
+[Thu15 07:19] - vm.py             :49  :j.controller.log     - INFO     - Uninstall vm_8f4cae81af50314f0d67bd vm
+passed
+ZRT-ZOS-015 [with filesystem='ext3'] ... [Thu15 07:19] - base_test.py      :90  :j.testsuite.log      - INFO     - Create zerodb [zdb], should succeed.
+[Thu15 07:19] - base_test.py      :90  :j.testsuite.log      - INFO     - Create vdisk [D] using namespace on [zdb], should succeed.
+[Thu15 07:20] - base_test.py      :90  :j.testsuite.log      - INFO     - Create vm [VM] with disk [D], should succeed.
+[Thu15 07:20] - vm.py             :44  :j.controller.log     - INFO     - Install vm_b44b4397b0bf91fdfad702 vm, ssh port : 22455 
+[Thu15 07:20] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that disk [D1] added successfully to vm.
+[Thu15 07:20] - vm.py             :49  :j.controller.log     - INFO     - Uninstall vm_b44b4397b0bf91fdfad702 vm
+passed
+ZRT-ZOS-015 [with filesystem='ext2'] ... [Thu15 07:21] - base_test.py      :90  :j.testsuite.log      - INFO     - Create zerodb [zdb], should succeed.
+[Thu15 07:21] - base_test.py      :90  :j.testsuite.log      - INFO     - Create vdisk [D] using namespace on [zdb], should succeed.
+[Thu15 07:22] - base_test.py      :90  :j.testsuite.log      - INFO     - Create vm [VM] with disk [D], should succeed.
+[Thu15 07:22] - vm.py             :44  :j.controller.log     - INFO     - Install vm_bf4e18a14e8a6dd1c1c8c3 vm, ssh port : 22551 
+[Thu15 07:22] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that disk [D1] added successfully to vm.
+[Thu15 07:22] - vm.py             :49  :j.controller.log     - INFO     - Uninstall vm_bf4e18a14e8a6dd1c1c8c3 vm
+passed
+ZRT-ZOS-015 [with filesystem='btrfs'] ... [Thu15 07:22] - base_test.py      :90  :j.testsuite.log      - INFO     - Create zerodb [zdb], should succeed.
+[Thu15 07:22] - base_test.py      :90  :j.testsuite.log      - INFO     - Create vdisk [D] using namespace on [zdb], should succeed.
+[Thu15 07:23] - base_test.py      :90  :j.testsuite.log      - INFO     - Create vm [VM] with disk [D], should succeed.
+[Thu15 07:23] - vm.py             :44  :j.controller.log     - INFO     - Install vm_2c4dcb82b370f8bbc596ca vm, ssh port : 22088 
+[Thu15 07:23] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that disk [D1] added successfully to vm.
+[Thu15 07:24] - vm.py             :49  :j.controller.log     - INFO     - Uninstall vm_2c4dcb82b370f8bbc596ca vm
+passed
+[Thu15 07:24] - vm.py             :44  :j.controller.log     - INFO     - Install vm_9f4faf885b99cbbda98ed4 vm, ssh port : 22823 
+ZRT-ZOS-005 ... [Thu15 07:24] - base_test.py      :90  :j.testsuite.log      - INFO     - Pause [vm1], should succeed.
+[Thu15 07:24] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that [vm1] has been paused successfully.
+[Thu15 07:24] - base_test.py      :90  :j.testsuite.log      - INFO     - Resume [vm1], should succeed.
+[Thu15 07:24] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that [vm1] is runninng 
+passed
+ZRT-ZOS-006 ... [Thu15 07:24] - base_test.py      :90  :j.testsuite.log      - INFO     - Shutdown [vm1], should succeed.
+[Thu15 07:24] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that [vm1] has been forced shutdown successfully.
+[Thu15 07:25] - base_test.py      :90  :j.testsuite.log      - INFO     - Start [vm1], should succeed.
+[Thu15 07:25] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that [vm1] is running again.
+passed
+ZRT-ZOS-007 ... [Thu15 07:25] - base_test.py      :90  :j.testsuite.log      - INFO     - Enable vnc_port for [vm1], should succeed.
+[Thu15 07:25] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that vnc_port has been enabled successfully.
+[Thu15 07:25] - base_test.py      :90  :j.testsuite.log      - INFO     - Disable vnc_port for [vm1], should succeed.
+passed
+ZRT-ZOS-008 [with *args=('reset',)] ... skipped
+ZRT-ZOS-008 [with *args=('reboot',)] ... skipped
+[Thu15 07:26] - vm.py             :49  :j.controller.log     - INFO     - Uninstall vm_9f4faf885b99cbbda98ed4 vm
+ZRT-ZOS-009 [with *args=('user',)] ... skipped
+ZRT-ZOS-009 [with *args=('seq',)] ... skipped
+ZRT-ZOS-009 [with *args=('direct',)] ... skipped
+ZRT-ZOS-010 ... [Thu15 07:28] - base_test.py      :90  :j.testsuite.log      - INFO     - Create zerodb (zdb) with basic params, should succeed
+[Thu15 07:28] - base_test.py      :90  :j.testsuite.log      - INFO     - list the namespaces, should be empty
+[Thu15 07:28] - base_test.py      :90  :j.testsuite.log      - INFO     - Create namespace (NS), should succeed
+[Thu15 07:28] - base_test.py      :90  :j.testsuite.log      - INFO     - List namespaces, NS should be found
+passed
+ZRT-ZOS-011 [with prop='password'] ... [Thu15 07:28] - base_test.py      :90  :j.testsuite.log      - INFO     - Create zerodb (zdb) with basic params, should succeed
+[Thu15 07:28] - base_test.py      :90  :j.testsuite.log      - INFO     - Create namespace (NS), should succeed
+[Thu15 07:28] - base_test.py      :90  :j.testsuite.log      - INFO     - set the namespace (NS) settings
+[Thu15 07:28] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that NS setting has been changed
+passed
+ZRT-ZOS-011 [with prop='public'] ... [Thu15 07:28] - base_test.py      :90  :j.testsuite.log      - INFO     - Create zerodb (zdb) with basic params, should succeed
+[Thu15 07:29] - base_test.py      :90  :j.testsuite.log      - INFO     - Create namespace (NS), should succeed
+[Thu15 07:29] - base_test.py      :90  :j.testsuite.log      - INFO     - set the namespace (NS) settings
+[Thu15 07:29] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that NS setting has been changed
+passed
+ZRT-ZOS-011 [with prop='size'] ... [Thu15 07:29] - base_test.py      :90  :j.testsuite.log      - INFO     - Create zerodb (zdb) with basic params, should succeed
+[Thu15 07:29] - base_test.py      :90  :j.testsuite.log      - INFO     - Create namespace (NS), should succeed
+[Thu15 07:29] - base_test.py      :90  :j.testsuite.log      - INFO     - set the namespace (NS) settings
+[Thu15 07:29] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that NS setting has been changed
+passed
+ZRT-ZOS-012 ... [Thu15 07:29] - base_test.py      :90  :j.testsuite.log      - INFO     - Create namespace (NS), should succeed
+[Thu15 07:29] - base_test.py      :90  :j.testsuite.log      - INFO     - Stop zerodb service, should succeed
+[Thu15 07:29] - base_test.py      :90  :j.testsuite.log      - INFO     - Make sure zerodb container has been removed
+[Thu15 07:29] - base_test.py      :90  :j.testsuite.log      - INFO     - Start zerodb service, should succeed.
+[Thu15 07:29] - base_test.py      :90  :j.testsuite.log      - INFO     - Check that Namespace (NS) is still there.
+passed
+======================================================================
+1) SKIP: ZRT-ZOS-016 [with *args=('before',)]
+----------------------------------------------------------------------
+   No Traceback
+   SkipTest: https://github.com/threefoldtech/0-templates/issues/201
+======================================================================
+2) SKIP: ZRT-ZOS-016 [with *args=('after',)]
+----------------------------------------------------------------------
+   No Traceback
+   SkipTest: https://github.com/threefoldtech/0-templates/issues/201
+======================================================================
+3) SKIP: ZRT-ZOS-008 [with *args=('reset',)]
+----------------------------------------------------------------------
+   No Traceback
+   SkipTest: https://github.com/threefoldtech/0-core/issues/35
+======================================================================
+4) SKIP: ZRT-ZOS-008 [with *args=('reboot',)]
+----------------------------------------------------------------------
+   No Traceback
+   SkipTest: https://github.com/threefoldtech/0-core/issues/35
+======================================================================
+5) SKIP: ZRT-ZOS-009 [with *args=('user',)]
+----------------------------------------------------------------------
+   No Traceback
+   SkipTest: https://github.com/threefoldtech/jumpscale_lib/issues/208
+======================================================================
+6) SKIP: ZRT-ZOS-009 [with *args=('seq',)]
+----------------------------------------------------------------------
+   No Traceback
+   SkipTest: https://github.com/threefoldtech/jumpscale_lib/issues/208
+======================================================================
+7) SKIP: ZRT-ZOS-009 [with *args=('direct',)]
+----------------------------------------------------------------------
+   No Traceback
+   SkipTest: https://github.com/threefoldtech/jumpscale_lib/issues/208
+
+-----------------------------------------------------------------------------
+31 tests run in 1672.313 seconds. 
+7 skipped (24 tests passed)
