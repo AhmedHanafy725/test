@@ -14,7 +14,6 @@ class Schema:
                           """
             self.logger.info("default schema is used")
             
-
     @property
     def schema_object(self):
         self.schema_obj = j.data.schema.get(schema_text_path=self.schema)
