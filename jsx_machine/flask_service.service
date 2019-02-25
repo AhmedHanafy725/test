@@ -1,6 +1,5 @@
 [Unit]
-Description=Job that runs the python SimpleHTTPServer daemon
-Documentation=man:SimpleHTTPServer(1)
+Description=Job that runs the python Flask server daemon
 
 [Service]
 Type=simple

@@ -1,6 +1,5 @@
 [Unit]
-Description=Job that runs the python3.6 SimpleHTTPServer daemon
-Documentation=man:SimpleHTTPServer(1)
+Description=Job that runs the Caddy server daemon
 
 [Service]
 Type=simple

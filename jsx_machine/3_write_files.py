@@ -35,16 +35,13 @@ cd /mnt/data/result
 export chat_id=@{}
 export Nacl={}
 export ServerIp='http://{}:{}'
+export name=$1
+export commit=$2
 python3.6 /sandbox/code/github/threefoldtech/jumpscaleX/scripts/autotest.py
 """.format(os.environ.get('telegram_chat_id'), os.environ.get('NACL_SECRET'), os.environ.get('public_ip'), os.environ.get('server_port'))
 
 with open('/home/test.sh', 'w+') as f:
     f.write(test_script)
-
-# crontab
-crontab = "0 3-18 * * 0-5 bash /home/test.sh"
-with open('/var/spool/cron/crontabs/root', 'w+') as f:
-    f.write(crontab)
 
 # caddy server
 caddy = """:5050 {
@@ -52,5 +49,66 @@ caddy = """:5050 {
 	browse
 }
 """
-with open('/mnt/data/Caddyfile', 'w+') as f:
+with open('/mnt/data/scripts/Caddyfile', 'w+') as f:
     f.write(caddy)
+
+# Flask server
+flask = """from flask import Flask, request
+from subprocess import run
+app = Flask(__name__)
+
+@app.route('/', methods=["POST"])
+def triggar(**kwargs):
+    if request.json['ref'][request.json['ref'].rfind('/') + 1:] == 'development':
+        cmd = 'bash /home/test.sh {} {}'.format(request.json['pusher']['name'], request.json['after'])
+        run(cmd, shell=True)
+    return "Done", 201
+
+@app.route('/', methods=["GET"])
+def ping():
+    return 'pong'
+
+if __name__ == "__main__":
+    app.run("0.0.0.0", 6010)
+"""
+with open('/mnt/data/scripts/flask_server.py', 'w+') as f:
+    f.write(flask)
+
+# Flask server
+flask_server = """[Unit]
+Description=Job that runs the python Flask server daemon
+
+[Service]
+Type=simple
+WorkingDirectory=/home
+ExecStart=/usr/bin/python3.6 /mnt/data/scripts/flask_server.py &
+ExecStop=/bin/kill `/bin/ps aux | /bin/grep /mnt/data/scripts/flask_server.py | /bin/grep -v grep | /usr/bin/awk '{ print $2 }'`
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target"""
+
+with open('/etc/systemd/system/flask_ser.service', 'w+') as f:
+    f.write(flask_server)
+
+# Caddy server
+caddy_server = """[Unit]
+Description=Job that runs the Caddy server daemon
+
+[Service]
+Type=simple
+WorkingDirectory=/home
+ExecStart=/usr/local/bin/caddy -log stdout -agree=true -conf=/mnt/data/scripts/Caddyfile -root=/var/tmp
+ExecStop=/bin/kill `/bin/ps aux | /bin/grep caddy | /bin/grep -v grep | /usr/bin/awk '{ print $2 }'`
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+"""
+
+with open('/etc/systemd/system/caddy_server.service', 'w+') as f:
+    f.write(caddy_server)
+
+run('systemctl daemon-reload', shell=True)
+run('systemctl start flask_ser.service', shell=True)
+run('systemctl start caddy_server.service', shell=True)

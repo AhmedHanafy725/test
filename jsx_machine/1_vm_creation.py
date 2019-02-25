@@ -48,7 +48,7 @@ if __name__ == "__main__":
     flist = 'https://hub.grid.tf/tf-bootable/ubuntu:18.04.flist'
     pub_port = random.randint(6000, 7000)
     server_port = random.randint(7000, 8000)
-    port = {server_port:5050, pub_port: 22}
+    port = {server_port:5050, pub_port: 22, 6010: 6010}
     vm_uuid = cl.kvm.create(name='jsx_testing', flist=flist, port=port, memory=2048, nics=[{'type':'default'}],
                 config= {'/root/.ssh/authorized_keys': ssh_key, '/etc/netplan/ens4.yaml': ens4}, media=[{'url': disk_path}])
     time.sleep(30)
@@ -71,15 +71,3 @@ if __name__ == "__main__":
            export NACL_SECRET={};\
            python3.6 /home/3_write_files.py'.format(server_port, public_ip, telegram_bot_token, telegram_chat_id, NACL_SECRET)
     execute_command(cmd=cmd, ip=node_ip, port=pub_port)
-    # start server
-    execute_command(cmd='caddy -conf /mnt/data/Caddyfile &> /tmp/server.log &', ip=node_ip, port=pub_port)
-
-"""
-needed to run this to do:
-export JWT=
-export node_ip=
-export public_ip=
-export telegram_bot_token=
-export telegram_chat_id=
-export NACL_SECRET=
-"""

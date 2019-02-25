@@ -14,6 +14,6 @@ if __name__ == "__main__":
     
     cmd = 'ps -aux | grep "python3.6 /mnt/data/scripts/flask_server.py" | awk "{print \$11}"'
     response = execute_cmd(cmd)
-    if 'python3.6' not in response.stdout:
-        cmd = 'python3.6 /mnt/data/scripts/flask_server.py &> /tmp/server2.log &'
+    if 'python3.6' not in response.stdout:r2
+        cmd = 'python3.6 /mnt/data/scripts/flask_server.py &> /tmp/serve.log &'
         run(cmd, shell=True, timeout=10)
