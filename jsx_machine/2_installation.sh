@@ -17,6 +17,7 @@ apt-get install -y docker-ce
 
 # install caddy
 mkdir /mnt/data/result
+mkdir /mnt/data/scripts
 curl https://getcaddy.com | bash -s personal
 
 #load ssh
