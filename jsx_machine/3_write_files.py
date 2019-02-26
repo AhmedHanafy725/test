@@ -37,8 +37,9 @@ export Nacl={}
 export ServerIp='http://{}:{}'
 export name=$1
 export commit=$2
+export username={}
 python3.6 /sandbox/code/github/threefoldtech/jumpscaleX/scripts/autotest.py
-""".format(os.environ.get('telegram_chat_id'), os.environ.get('NACL_SECRET'), os.environ.get('public_ip'), os.environ.get('server_port'))
+""".format(os.environ.get('telegram_chat_id'), os.environ.get('NACL_SECRET'), os.environ.get('public_ip'), os.environ.get('server_port'), os.environ.get('username'))
 
 with open('/mnt/data/scripts/test.sh', 'w+') as f:
     f.write(test_script)
@@ -47,10 +48,12 @@ with open('/mnt/data/scripts/test.sh', 'w+') as f:
 build = """set -e
 source /sandbox/env.sh
 cd /mnt/data/result
-export chat_id=@hamadarealtest
-export ServerIp='http://188.165.233.148:7070'
+export chat_id=@{}
+export ServerIp='http://{}:{}'
+export username={}
+export password={}
 python3.6 /sandbox/code/github/threefoldtech/jumpscaleX/scripts/build_image.py
-"""
+""".format(os.environ.get('telegram_chat_id'), os.environ.get('public_ip'), os.environ.get('server_port'), os.environ.get('username'), os.environ.get('password'))
 
 with open('/mnt/data/scripts/bulid.sh', 'w+') as f:
     f.write(test_script)
