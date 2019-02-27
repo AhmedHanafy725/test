@@ -59,7 +59,9 @@ with open('/mnt/data/scripts/bulid.sh', 'w+') as f:
     f.write(test_script)
 
 # night build for jumpscale image
-crontab = "0 22 * * 0-5 bash /mnt/data/scripts/build.sh"
+crontab = """0 0 * * 0-5 bash /mnt/data/scripts/build.sh
+0 0 * * 0-5 find /mnt/data/result/ -type f -name '*.log' -mtime +15 -exec rm {} \;
+"""
 with open('/var/spool/cron/crontabs/root', 'w+') as f:
     f.write(crontab)
 
@@ -77,16 +79,20 @@ flask = """from flask import Flask, request
 from subprocess import run
 app = Flask(__name__)
 
+
 @app.route('/', methods=["POST"])
 def triggar(**kwargs):
-    if request.json['ref'][request.json['ref'].rfind('/') + 1:] == 'development':
-        cmd = 'bash /home/test.sh {} {}'.format(request.json['pusher']['name'], request.json['after'])
-        run(cmd, shell=True)
+    if request.json and request.json.get('ref') and request.json.get('pusher') and request.json.get('after'):
+        if request.json['ref'][request.json['ref'].rfind('/') + 1:] == 'development':
+            cmd = 'bash /mnt/data/scripts/test.sh {} {}'.format(request.json['pusher']['name'], request.json['after'])
+            run(cmd, shell=True)
     return "Done", 201
+
 
 @app.route('/', methods=["GET"])
 def ping():
     return 'pong'
+
 
 if __name__ == "__main__":
     app.run("0.0.0.0", 6010)
@@ -94,7 +100,7 @@ if __name__ == "__main__":
 with open('/mnt/data/scripts/flask_server.py', 'w+') as f:
     f.write(flask)
 
-# Flask server
+# Flask server service file
 flask_server = """[Unit]
 Description=Job that runs the python Flask server daemon
 
@@ -111,7 +117,7 @@ WantedBy=multi-user.target"""
 with open('/etc/systemd/system/flask_ser.service', 'w+') as f:
     f.write(flask_server)
 
-# Caddy server
+# Caddy server service file
 caddy_server = """[Unit]
 Description=Job that runs the Caddy server daemon
 
