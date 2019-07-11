@@ -1,6 +1,6 @@
 from unittest import TestCase
 import unittest
-
+import os
 
 class Tests(TestCase):
     def test01_passing(self):
@@ -22,3 +22,7 @@ class Tests(TestCase):
         y = 0
         z = x / y
         self.assertEquals(x, y)
+
+    def test05_env(self):
+        name = os.environ.get("NAME")
+        self.assertEquals(name , "Hamada")
