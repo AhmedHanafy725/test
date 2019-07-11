@@ -24,5 +24,5 @@ class Tests(TestCase):
         self.assertEquals(x, y)
 
     def test05_env(self):
-        name = os.environ.get("NAME")
+        name = os.environ.get('name')
         self.assertEquals(name , "Hamada")
