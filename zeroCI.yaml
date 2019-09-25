@@ -1,0 +1,8 @@
+install:
+  - apt-get update; apt-get install -y python3.6 curl locales language-pack-en rsync unzip python3-pip
+  - pip3 install pytest nose black
+
+script:
+  - cd /opt/code/github/AhmedHanafy725/test; nosetests-3.4 -v testcase.py --with-xunit --xunit-file=/test.xml --xunit-testsuite-name=mytest
+  - cd /opt/code/github/AhmedHanafy725/test; pytest -v testcase.py --junitxml=/test.xml -o junit_suite_name=mytest
+  - cd /opt/code/github/AhmedHanafy725/test; nosetests-3.4 -v testcase.py --with-xunit --xunit-file=/test.xml --xunit-testsuite-name=mytest
