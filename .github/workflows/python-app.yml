@@ -20,6 +20,7 @@ jobs:
           sudo pip3 install pytest
       - name: Install
         env:
-          name: Hamada
+          NAME: Hamada
         run: |
+          set-env name=$NAME
           sudo pytest testcase.py -sv
