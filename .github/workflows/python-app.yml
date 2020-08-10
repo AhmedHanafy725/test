@@ -21,7 +21,7 @@ jobs:
           WALLET_NAME: ${{ secrets.WALLET_NAME }}
           WALLET_SECRET: ${{ secrets.WALLET_SECRET }}
         run: |
-          echo $TNAME
+          bash print_env.sh
       - name: Gathering deps
         run: |
           sudo apt-get update
