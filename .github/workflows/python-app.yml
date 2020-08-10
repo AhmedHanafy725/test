@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@master
       - name: test
         env: 
-          TNAME: hamada
+          TNAME: "${{ secrets.TNAME }}"
           EMAIL: ${{ secrets.EMAIL }}
           WORDS: ${{ secrets.WORDS }}
           WALLET_NAME: ${{ secrets.WALLET_NAME }}
