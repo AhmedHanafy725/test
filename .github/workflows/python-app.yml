@@ -16,25 +16,10 @@ jobs:
       - name: Gathering deps
         run: |
           sudo apt-get update
-          sudo apt-get install -y git python3-pip python3-venv python3-setuptools tmux redis
-          sudo pip3 install poetry
+          sudo apt-get install -y git python3-pip
+          sudo pip3 install pytest
       - name: Install
+        env:
+          name: Hamada
         run: |
-          git clone https://github.com/threefoldtech/js-sdk.git -b development_capacitypool
-          cd js-sdk
-          sudo poetry run pip3 install pytest
-          sudo poetry update
-          sudo poetry install
-      - name: Run tests
-        env: 
-          TNAME: "${{ secrets.TNAME }}"
-          EMAIL: "${{ secrets.EMAIL }}"
-          WORDS: "${{ secrets.WORDS }}"
-          WALLET_NAME: "${{ secrets.WALLET_NAME }}"
-          WALLET_SECRET: "${{ secrets.WALLET_SECRET }}"
-        run: |
-          cd js-sdk
-          export WALLET_NAME=$WALLET_NAME
-          export WALLET_SECRET=$WALLET_SECRET
-          sudo poetry run jsng "j.core.identity.get('default', tname='$TNAME', email='$EMAIL', words='$WORDS', explorer_url='https://explorer.testnet.grid.tf/api/v1')"
-          sudo poetry run pytest ../payment -s
+          sudo pytest testcase.py -sv
