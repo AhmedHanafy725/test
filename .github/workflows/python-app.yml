@@ -13,15 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: test
-        env: 
-          TNAME: "${{ secrets.TNAME }}"
-          EMAIL: ${{ secrets.EMAIL }}
-          WORDS: ${{ secrets.WORDS }}
-          WALLET_NAME: ${{ secrets.WALLET_NAME }}
-          WALLET_SECRET: ${{ secrets.WALLET_SECRET }}
-        run: |
-          bash print_env.sh
       - name: Gathering deps
         run: |
           sudo apt-get update
@@ -36,11 +27,11 @@ jobs:
           sudo poetry install
       - name: Run tests
         env: 
-          TNAME: ${{ secrets.TNAME }}
-          EMAIL: ${{ secrets.EMAIL }}
-          WORDS: ${{ secrets.WORDS }}
-          WALLET_NAME: ${{ secrets.WALLET_NAME }}
-          WALLET_SECRET: ${{ secrets.WALLET_SECRET }}
+          TNAME: "${{ secrets.TNAME }}"
+          EMAIL: "${{ secrets.EMAIL }}"
+          WORDS: "${{ secrets.WORDS }}"
+          WALLET_NAME: "${{ secrets.WALLET_NAME }}"
+          WALLET_SECRET: "${{ secrets.WALLET_SECRET }}"
         run: |
           cd js-sdk
           sudo poetry run jsng "j.core.identity.get('default', tname='$TNAME', email='$EMAIL', words='$WORDS', explorer_url='https://explorer.testnet.grid.tf/api/v1')"
