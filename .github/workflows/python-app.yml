@@ -32,7 +32,8 @@ jobs:
           WORDS: "${{ secrets.WORDS }}"
           WALLET_NAME: "${{ secrets.WALLET_NAME }}"
           WALLET_SECRET: "${{ secrets.WALLET_SECRET }}"
+          name: ${{ secrets.name }}
         run: |
           cd js-sdk
           sudo poetry run jsng "j.core.identity.get('default', tname='$TNAME', email='$EMAIL', words='$WORDS', explorer_url='https://explorer.testnet.grid.tf/api/v1')"
-          sudo poetry run pytest ../payment -s
+          sudo poetry run pytest ../testcase.py -s
