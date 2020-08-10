@@ -34,7 +34,7 @@ jobs:
           WALLET_SECRET: "${{ secrets.WALLET_SECRET }}"
         run: |
           cd js-sdk
-          env | grep _ >> /etc/environment
+          sudo env | grep _ >> /etc/environment
           sudo poetry run jsng "j.core.identity.get('default', tname='$TNAME', email='$EMAIL', words='$WORDS', explorer_url='https://explorer.testnet.grid.tf/api/v1')"
           sudo poetry run pytest ../payment -s 
 
