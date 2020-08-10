@@ -22,5 +22,5 @@ jobs:
         env:
           NAME: Hamada
         run: |
-          set-env name=$NAME
+          export name="$NAME"
           sudo pytest testcase.py -sv
